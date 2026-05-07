@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meow Cat Cafe Malang</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --black: #111111;
+      --white: #FFFFFF;
+      --beige: #F5F0E8;
+      --beige-dark: #EDE6D6;
+      --pink: #E8A0BF;
+      --pink-dark: #D4789F;
+      --pink-light: #F5CEDE;
+      --gray: #888888;
+      --border: #E2DDD6;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 40px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--black);
+    }
+    .nav-logo img {
+      width: 44px; height: 44px; border-radius: 50%;
+      object-fit: cover;
+    }
+    .nav-logo-placeholder {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-size: 18px;
+    }
+    .nav-logo span {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px; font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .nav-logo small { display: block; font-size: 10px; color: var(--gray); letter-spacing: 1.5px; text-transform: uppercase; margin-top: -2px; }
+
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-links a {
+      text-decoration: none; color: var(--black);
+      font-size: 14px; font-weight: 500;
+      padding: 8px 16px; border-radius: 100px;
+      transition: background 0.2s, color 0.2s;
+      letter-spacing: 0.2px;
+    }
+    .nav-links a:hover { background: var(--beige); }
+    .nav-links .btn-nav-cta {
+      background: var(--pink); color: var(--white);
+      padding: 8px 20px;
+    }
+    .nav-links .btn-nav-cta:hover { background: var(--pink-dark); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--black); border-radius: 2px; transition: all 0.3s; }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      background: var(--beige);
+      padding: 100px 40px 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-pattern {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(circle, rgba(232,160,191,0.12) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+      align-items: center; width: 100%;
+    }
+    .hero-content {}
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--white); border: 1px solid var(--border);
+      padding: 6px 16px; border-radius: 100px;
+      font-size: 12px; color: var(--gray); letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-tag::before { content: '🐾'; font-size: 14px; }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 1.15; font-weight: 700;
+      margin-bottom: 20px;
+    }
+    h1 em { font-style: italic; color: var(--pink-dark); }
+    .hero-desc {
+      font-size: 16px; color: #555; line-height: 1.7;
+      max-width: 460px; margin-bottom: 36px;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--black); color: var(--white);
+      padding: 14px 28px; border-radius: 100px;
+      font-size: 15px; font-weight: 500; text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .btn-primary:hover { background: #333; transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--pink); color: var(--white);
+      padding: 14px 28px; border-radius: 100px;
+      font-size: 15px; font-weight: 500; text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .btn-secondary:hover { background: var(--pink-dark); transform: translateY(-2px); }
+
+    .hero-img-wrap {
+      position: relative;
+    }
+    .hero-cafe-img {
+      width: 100%; aspect-ratio: 4/5;
+      border-radius: 24px; overflow: hidden;
+      background: #D9D0C3;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .hero-cafe-img .placeholder-inner {
+      text-align: center; color: #888; padding: 24px;
+    }
+    .hero-cafe-img .placeholder-inner span { font-size: 60px; display: block; margin-bottom: 12px; }
+    .hero-cafe-img .placeholder-inner p { font-size: 13px; color: #aaa; line-height: 1.5; }
+    .hero-badge {
+      position: absolute; bottom: -16px; left: 24px;
+      background: var(--white); border-radius: 16px;
+      padding: 14px 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-badge-icon { font-size: 24px; }
+    .hero-badge-text strong { display: block; font-size: 15px; font-weight: 700; }
+    .hero-badge-text span { font-size: 12px; color: var(--gray); }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 80px 40px; }
+    .section-label {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--pink-dark); font-weight: 600; margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 44px); font-weight: 700;
+      line-height: 1.2; margin-bottom: 16px;
+    }
+    .section-desc { font-size: 16px; color: #666; line-height: 1.7; max-width: 560px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    /* ── MEET CATS ── */
+    #meet-cats { background: var(--white); }
+    .cats-header { margin-bottom: 40px; }
+    .cats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+    .cat-card {
+      border-radius: 16px; overflow: hidden;
+      cursor: pointer; position: relative;
+      background: var(--beige);
+      transition: transform 0.25s, box-shadow 0.25s;
+      border: 1px solid var(--border);
+    }
+    .cat-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,0,0,0.12); }
+    .cat-img {
+      width: 100%; aspect-ratio: 3/4;
+      background: linear-gradient(135deg, #E0D8CC 0%, #C8C0B0 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .cat-img-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px; color: rgba(0,0,0,0.12); font-style: italic;
+      user-select: none;
+    }
+    .cat-img-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 40px; opacity: 0.4; }
+    .cat-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.25s;
+      display: flex; align-items: flex-end; justify-content: center; padding-bottom: 14px;
+    }
+    .cat-card:hover .cat-img-overlay { opacity: 1; }
+    .cat-img-overlay span {
+      color: white; font-size: 12px; font-weight: 500;
+      background: rgba(255,255,255,0.2); backdrop-filter: blur(4px);
+      padding: 4px 12px; border-radius: 100px;
+    }
+    .cat-info { padding: 12px 14px 14px; }
+    .cat-name { font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+    .cat-breed { font-size: 12px; color: var(--gray); }
+    .cat-fav {
+      position: absolute; top: 10px; right: 10px;
+      background: var(--white); border: none; border-radius: 50%;
+      width: 32px; height: 32px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; transition: transform 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .cat-fav:hover { transform: scale(1.2); }
+    .cat-fav.active { color: #E8A0BF; }
+
+    /* ── CAT MODAL ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.55); backdrop-filter: blur(6px);
+      z-index: 200; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--white); border-radius: 24px;
+      max-width: 560px; width: 100%; overflow: hidden;
+      animation: modalIn 0.3s ease;
+    }
+    @keyframes modalIn { from { opacity:0; transform: scale(0.92) translateY(20px); } to { opacity:1; transform: scale(1) translateY(0); } }
+    .modal-img {
+      width: 100%; height: 240px;
+      background: linear-gradient(135deg, #E0D8CC, #C8C0B0);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .modal-img-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 80px; color: rgba(0,0,0,0.08); font-style: italic;
+    }
+    .modal-img-emoji { position: absolute; font-size: 64px; }
+    .modal-body { padding: 28px 32px 32px; }
+    .modal-name { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+    .modal-breed { font-size: 13px; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+    .modal-section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pink-dark); font-weight: 600; margin-bottom: 8px; }
+    .modal-story { font-size: 15px; color: #555; line-height: 1.7; margin-bottom: 24px; }
+    .modal-footer { display: flex; align-items: center; justify-content: space-between; }
+    .btn-fav-modal {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--pink-light); color: var(--pink-dark);
+      border: none; padding: 10px 22px; border-radius: 100px;
+      font-size: 14px; font-weight: 500; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-fav-modal:hover { background: var(--pink); color: var(--white); }
+    .btn-fav-modal.active { background: var(--pink); color: var(--white); }
+    .modal-close {
+      background: var(--beige); border: none; cursor: pointer;
+      padding: 8px 18px; border-radius: 100px; font-size: 14px; color: var(--gray);
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: var(--beige-dark); }
+
+    /* ── MENU ── */
+    #menu { background: var(--beige); }
+    .menu-header { margin-bottom: 40px; }
+    .menu-tabs {
+      display: flex; gap: 8px; margin-bottom: 36px; flex-wrap: wrap;
+    }
+    .menu-tab {
+      padding: 9px 22px; border-radius: 100px; border: 1.5px solid var(--border);
+      background: var(--white); font-size: 14px; font-weight: 500;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .menu-tab.active { background: var(--black); color: var(--white); border-color: var(--black); }
+    .menu-tab:hover:not(.active) { border-color: var(--pink); }
+
+    .menu-panel { display: none; }
+    .menu-panel.active { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .menu-item {
+      background: var(--white); border-radius: 16px;
+      padding: 22px 24px; border: 1px solid var(--border);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .menu-item:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-2px); }
+    .menu-item-emoji { font-size: 28px; margin-bottom: 12px; display: block; }
+    .menu-item-name { font-weight: 700; font-size: 16px; margin-bottom: 6px; }
+    .menu-item-desc { font-size: 13px; color: var(--gray); line-height: 1.6; margin-bottom: 14px; }
+    .menu-item-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 700; color: var(--pink-dark);
+    }
+
+    /* ── LOCATION ── */
+    #location { background: var(--white); }
+    .location-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .location-info h2 { font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 12px; }
+    .location-info p { font-size: 15px; color: #666; line-height: 1.7; margin-bottom: 28px; }
+    .location-detail { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+    .location-row { display: flex; gap: 14px; align-items: flex-start; }
+    .location-row-icon { font-size: 20px; margin-top: 2px; }
+    .location-row-text strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+    .location-row-text span { font-size: 13px; color: var(--gray); line-height: 1.5; }
+    .btn-maps {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--black); color: var(--white);
+      padding: 13px 26px; border-radius: 100px;
+      font-size: 14px; font-weight: 500; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-maps:hover { background: #333; }
+    .map-embed { border-radius: 20px; overflow: hidden; border: 1px solid var(--border); background: #E8E4DC; height: 380px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
+    .map-embed iframe { width: 100%; height: 100%; border: none; display: block; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black); color: var(--white);
+      padding: 56px 40px 32px;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+      padding-bottom: 40px; border-bottom: 1px solid #222;
+    }
+    .footer-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700; margin-bottom: 6px;
+    }
+    .footer-brand-sub { font-size: 12px; color: #888; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-brand-desc { font-size: 14px; color: #888; line-height: 1.7; max-width: 280px; }
+    .footer-col h4 { font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #888; margin-bottom: 16px; }
+    .footer-col a { display: block; color: #ccc; text-decoration: none; font-size: 14px; margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--pink); }
+    .social-links { display: flex; gap: 12px; margin-top: 4px; }
+    .social-link {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: #1a1a1a; border: 1px solid #2a2a2a;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; font-size: 16px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .social-link:hover { background: var(--pink); border-color: var(--pink); }
+    .footer-bottom {
+      max-width: 1200px; margin: 24px auto 0;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 13px; color: #555;
+    }
+
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 90;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25D366; color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; text-decoration: none;
+      box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+      transition: transform 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.1); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; flex-direction: column; position: fixed; top: 72px; left: 0; right: 0; background: var(--white); border-bottom: 1px solid var(--border); padding: 20px; gap: 4px; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      #home { padding: 100px 20px 60px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-img-wrap { order: -1; }
+      .hero-cafe-img { aspect-ratio: 16/9; }
+      section { padding: 60px 20px; }
+      .cats-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .menu-panel.active { grid-template-columns: repeat(2, 1fr); }
+      .location-inner { grid-template-columns: 1fr; gap: 36px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+    @media (max-width: 560px) {
+      .cats-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .menu-panel.active { grid-template-columns: 1fr; }
+      h1 { font-size: 32px; }
+    }
+
+    /* ── RULES SECTION ── */
+    #rules { background: var(--beige); }
+    .rules-intro {
+      max-width: 620px; margin-bottom: 48px;
+    }
+    .rules-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    }
+    .rules-group {
+      background: var(--white); border-radius: 20px;
+      padding: 28px 30px; border: 1px solid var(--border);
+    }
+    .rules-group-header {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+    }
+    .rules-group-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .rules-group-icon.do { background: #E8F5E9; }
+    .rules-group-icon.dont { background: #FFF0F3; }
+    .rules-group-title { font-weight: 700; font-size: 16px; }
+    .rules-group-subtitle { font-size: 12px; color: var(--gray); margin-top: 2px; }
+    .rules-list { display: flex; flex-direction: column; gap: 12px; }
+    .rule-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 14px; line-height: 1.6; color: #444;
+    }
+    .rule-badge {
+      width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+    .rule-badge.do { background: #C8E6C9; color: #2E7D32; }
+    .rule-badge.dont { background: #FFD6DD; color: #C62828; }
+    .rules-note {
+      margin-top: 28px; background: var(--pink-light);
+      border-left: 3px solid var(--pink-dark);
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+      font-size: 14px; color: #555; line-height: 1.7;
+    }
+    .rules-note strong { color: var(--pink-dark); }
+    @media (max-width: 900px) {
+      .rules-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── RESERVATION SECTION ── */
+    #reservasi { background: var(--white); }
+    .reservasi-wrap {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start;
+    }
+    .reservasi-info { position: sticky; top: 100px; }
+    .reservasi-info h2 { font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 12px; line-height: 1.2; }
+    .reservasi-info p { font-size: 15px; color: #666; line-height: 1.7; margin-bottom: 28px; }
+    .reservasi-meta { display: flex; flex-direction: column; gap: 14px; }
+    .reservasi-meta-item { display: flex; align-items: center; gap: 12px; }
+    .reservasi-meta-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: var(--beige); display: flex; align-items: center;
+      justify-content: center; font-size: 16px; flex-shrink: 0;
+    }
+    .reservasi-meta-text strong { display: block; font-size: 13px; font-weight: 600; }
+    .reservasi-meta-text span { font-size: 12px; color: var(--gray); }
+
+    .reservasi-form-card {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 24px; padding: 36px; box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 18px; display: flex; flex-direction: column; gap: 6px; }
+    .form-group label {
+      font-size: 13px; font-weight: 600; color: var(--black);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .form-group label .req { color: var(--pink-dark); }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid var(--border); border-radius: 12px;
+      font-size: 14px; font-family: 'DM Sans', sans-serif;
+      background: var(--white); color: var(--black);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none; appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--pink); box-shadow: 0 0 0 3px rgba(232,160,191,0.18);
+    }
+    .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+
+    /* date picker custom */
+    .date-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; }
+    .date-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .date-nav-btn { background: none; border: none; font-size: 18px; cursor: pointer; padding: 4px 8px; border-radius: 8px; transition: background 0.15s; }
+    .date-nav-btn:hover { background: var(--beige); }
+    .date-month-label { font-size: 14px; font-weight: 600; }
+    .date-day-header { font-size: 11px; color: var(--gray); text-align: center; padding: 4px 0; font-weight: 600; }
+    .date-cell {
+      aspect-ratio: 1; border-radius: 8px; border: none; background: none;
+      font-size: 13px; cursor: pointer; transition: background 0.15s, color 0.15s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .date-cell:hover:not(:disabled):not(.empty) { background: var(--beige); }
+    .date-cell.selected { background: var(--black); color: var(--white) !important; }
+    .date-cell.today { font-weight: 700; color: var(--pink-dark); }
+    .date-cell:disabled { opacity: 0.3; cursor: not-allowed; }
+    .date-cell.empty { cursor: default; }
+    .date-cell.other-month { color: #ccc; }
+    .date-picker-wrapper {
+      border: 1.5px solid var(--border); border-radius: 12px;
+      padding: 14px; background: var(--white);
+      transition: border-color 0.2s; cursor: default;
+    }
+    .date-picker-wrapper.focused { border-color: var(--pink); box-shadow: 0 0 0 3px rgba(232,160,191,0.18); }
+
+    /* reservation rules */
+    .reservasi-rules {
+      background: var(--beige); border-radius: 16px;
+      padding: 20px 22px; margin-bottom: 22px;
+    }
+    .reservasi-rules-title {
+      font-size: 13px; font-weight: 700; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .reservasi-rules-list { display: flex; flex-direction: column; gap: 8px; }
+    .reservasi-rules-item {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 12px; color: #555; line-height: 1.6;
+    }
+    .reservasi-rules-item::before { content: '•'; color: var(--pink-dark); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    .agree-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      margin-bottom: 20px; cursor: pointer;
+    }
+    .agree-row input[type="checkbox"] {
+      width: 18px; height: 18px; border-radius: 5px;
+      border: 1.5px solid var(--border); flex-shrink: 0;
+      accent-color: var(--pink-dark); margin-top: 2px; cursor: pointer;
+    }
+    .agree-row label { font-size: 13px; color: #555; line-height: 1.6; cursor: pointer; }
+    .agree-row label strong { color: var(--black); }
+
+    .btn-reservasi {
+      width: 100%; padding: 15px;
+      background: var(--black); color: var(--white);
+      border: none; border-radius: 14px;
+      font-size: 15px; font-weight: 600; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: background 0.2s, transform 0.15s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-reservasi:hover { background: #333; transform: translateY(-2px); }
+    .btn-reservasi:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+    .btn-reservasi-note { text-align: center; font-size: 12px; color: var(--gray); margin-top: 10px; }
+
+    @media (max-width: 900px) {
+      .reservasi-wrap { grid-template-columns: 1fr; gap: 36px; }
+      .reservasi-info { position: static; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">
+    <div class="nav-logo-placeholder">🐾</div>
+    <div>
+      <span>Meow Cat Cafe</span>
+      <small>Malang</small>
+    </div>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="#home">Home</a>
+    <a href="#meet-cats">Meet the Cats</a>
+    <a href="#rules">Rules</a>
+    <a href="#menu">Menu</a>
+    <a href="#reservasi">Reservasi</a>
+    <a href="#location">Location</a>
+    <a href="https://wa.me/6282132620899" target="_blank" class="btn-nav-cta">Chat with Us</a>
+  </div>
+  <button class="hamburger" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tag">Cat Cafe Pertama di Malang</div>
+      <h1>Temukan <em>Kebahagiaan</em> di Meow Cat Cafe Malang</h1>
+      <p class="hero-desc">Nikmati kopi hangat sambil ditemani 15 kucing menggemaskan kami. Tempat sempurna untuk bersantai, bekerja, atau sekadar mengisi ulang energimu.</p>
+      <div class="hero-btns">
+        <a href="https://wa.me/6282132620899" target="_blank" class="btn-secondary">💬 Chat with Us</a>
+        <a href="#meet-cats" class="btn-primary">🐱 Meet the Cats</a>
+      </div>
+    </div>
+    <div class="hero-img-wrap">
+      <div class="hero-cafe-img">
+        <div class="placeholder-inner">
+          <span>☕</span>
+          <p>Foto interior cafe<br>akan ditampilkan di sini</p>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-icon">🐾</div>
+        <div class="hero-badge-text">
+          <strong>15 Kucing Lucu</strong>
+          <span>Siap menemanimu!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEET THE CATS -->
+<section id="meet-cats">
+  <div class="section-inner">
+    <div class="cats-header">
+      <div class="section-label">Our Residents</div>
+      <h2 class="section-title">Meet Our Cats</h2>
+      <p class="section-desc">Kenali sahabat berbulu kami satu per satu. Klik foto mereka untuk mengetahui nama, kisah, dan kepribadian unik mereka.</p>
+    </div>
+    <div class="cats-grid" id="catsGrid"></div>
+  </div>
+</section>
+
+<!-- CAT MODAL -->
+<div class="modal-overlay" id="catModal">
+  <div class="modal">
+    <div class="modal-img">
+      <span class="modal-img-num" id="modalImgNum"></span>
+      <span class="modal-img-emoji">🐱</span>
+    </div>
+    <div class="modal-body">
+      <div class="modal-name" id="modalName"></div>
+      <div class="modal-breed" id="modalBreed"></div>
+      <div class="modal-section-label">Sejarah Kucing</div>
+      <p class="modal-story" id="modalStory"></p>
+      <div class="modal-footer">
+        <button class="btn-fav-modal" id="modalFavBtn" onclick="toggleFavModal()">🤍 Favoritkan Kucing Ini</button>
+        <button class="modal-close" onclick="closeModal()">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RULES -->
+<section id="rules">
+  <div class="section-inner">
+    <div class="rules-intro">
+      <div class="section-label">Cat Cafe Guidelines</div>
+      <h2 class="section-title">Peraturan Cafe 🐾</h2>
+      <p class="section-desc">Demi kenyamanan kamu dan kesehatan kucing-kucing kami, mohon perhatikan beberapa aturan berikut sebelum memasuki area kucing.</p>
+    </div>
+    <div class="rules-grid">
+
+      <!-- DO -->
+      <div class="rules-group">
+        <div class="rules-group-header">
+          <div class="rules-group-icon do">✅</div>
+          <div>
+            <div class="rules-group-title">Yang Boleh Dilakukan</div>
+            <div class="rules-group-subtitle">Untuk pengalaman terbaikmu</div>
+          </div>
+        </div>
+        <div class="rules-list">
+          <div class="rule-item"><span class="rule-badge do">✓</span>Cuci tangan dengan sabun sebelum dan sesudah berinteraksi dengan kucing.</div>
+          <div class="rule-item"><span class="rule-badge do">✓</span>Biarkan kucing mendekat terlebih dahulu — beri mereka waktu untuk nyaman denganmu.</div>
+          <div class="rule-item"><span class="rule-badge do">✓</span>Elus kucing dengan lembut di area kepala, pipi, dan punggung.</div>
+          <div class="rule-item"><span class="rule-badge do">✓</span>Gunakan mainan yang disediakan cafe untuk berinteraksi dengan kucing.</div>
+          <div class="rule-item"><span class="rule-badge do">✓</span>Berbicara dengan suara pelan dan tenang agar kucing tidak terkejut.</div>
+          <div class="rule-item"><span class="rule-badge do">✓</span>Foto dan video kucing diperbolehkan untuk keperluan pribadi dan sosial media.</div>
+          <div class="rule-item"><span class="rule-badge do">✓</span>Beri tahu staff jika ada kucing yang terlihat sakit atau tidak nyaman.</div>
+        </div>
+      </div>
+
+      <!-- DON'T -->
+      <div class="rules-group">
+        <div class="rules-group-header">
+          <div class="rules-group-icon dont">🚫</div>
+          <div>
+            <div class="rules-group-title">Yang Tidak Boleh Dilakukan</div>
+            <div class="rules-group-subtitle">Demi keselamatan kucing kami</div>
+          </div>
+        </div>
+        <div class="rules-list">
+          <div class="rule-item"><span class="rule-badge dont">✗</span>Dilarang memberi makan kucing dengan makanan dari luar — hanya makanan cafe yang diperbolehkan.</div>
+          <div class="rule-item"><span class="rule-badge dont">✗</span>Jangan mengejar, memaksa, atau memegang kucing yang tidak mau dipegang.</div>
+          <div class="rule-item"><span class="rule-badge dont">✗</span>Dilarang mengganggu kucing yang sedang tidur atau beristirahat.</div>
+          <div class="rule-item"><span class="rule-badge dont">✗</span>Jangan membuat suara keras, berteriak, atau berlari di area kucing.</div>
+          <div class="rule-item"><span class="rule-badge dont">✗</span>Dilarang membawa hewan peliharaan dari luar ke dalam cafe.</div>
+          <div class="rule-item"><span class="rule-badge dont">✗</span>Anak-anak di bawah 5 tahun harus selalu dalam pengawasan orang tua.</div>
+          <div class="rule-item"><span class="rule-badge dont">✗</span>Dilarang menggunakan flash kamera langsung ke arah wajah kucing.</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="rules-note">
+      <strong>🩺 Catatan Kesehatan:</strong> Semua kucing kami divaksinasi secara rutin, diperiksa kesehatan secara berkala, dan dirawat oleh dokter hewan berpengalaman. Jika kamu memiliki alergi terhadap bulu kucing, harap konsultasikan terlebih dahulu dengan staff kami. Terima kasih sudah membantu menjaga kenyamanan dan kesehatan keluarga berbulu kami! 🐾
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="section-inner">
+    <div class="menu-header">
+      <div class="section-label">Our Menu</div>
+      <h2 class="section-title">Nikmati Menu Kami</h2>
+      <p class="section-desc">Dari kopi specialty hingga minuman segar dan camilan, semua tersedia untuk menemani waktu santaimu bersama para kucing.</p>
+    </div>
+    <div class="menu-tabs">
+      <button class="menu-tab active" onclick="switchTab(this,'coffee')">☕ Coffee</button>
+      <button class="menu-tab" onclick="switchTab(this,'noncoffee')">🧋 Non-Coffee</button>
+      <button class="menu-tab" onclick="switchTab(this,'snacks')">🍪 Snacks</button>
+    </div>
+    <div class="menu-panel active" id="tab-coffee">
+      <div class="menu-item"><span class="menu-item-emoji">☕</span><div class="menu-item-name">Americano</div><div class="menu-item-desc">Espresso bold dengan air panas, rasa kopi yang bersih dan kuat.</div><div class="menu-item-price">Rp 22.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🥛</span><div class="menu-item-name">Caffe Latte</div><div class="menu-item-desc">Espresso smooth dipadukan susu segar steamed, creamy dan lembut.</div><div class="menu-item-price">Rp 28.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍫</span><div class="menu-item-name">Mocha Latte</div><div class="menu-item-desc">Perpaduan espresso, coklat, dan susu yang memanjakan lidah.</div><div class="menu-item-price">Rp 30.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🌿</span><div class="menu-item-name">Matcha Latte</div><div class="menu-item-desc">Matcha premium Jepang dengan sentuhan susu segar yang creamy.</div><div class="menu-item-price">Rp 32.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🧊</span><div class="menu-item-name">Cold Brew</div><div class="menu-item-desc">Kopi seduh dingin 12 jam, smooth tanpa rasa asam yang berlebihan.</div><div class="menu-item-price">Rp 28.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍮</span><div class="menu-item-name">Caramel Macchiato</div><div class="menu-item-desc">Vanilla latte dengan siraman karamel manis di atasnya.</div><div class="menu-item-price">Rp 32.000</div></div>
+    </div>
+    <div class="menu-panel" id="tab-noncoffee">
+      <div class="menu-item"><span class="menu-item-emoji">🫐</span><div class="menu-item-name">Taro Latte</div><div class="menu-item-desc">Susu segar dengan bubuk taro ungu yang lembut dan manis alami.</div><div class="menu-item-price">Rp 28.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍓</span><div class="menu-item-name">Strawberry Smoothie</div><div class="menu-item-desc">Segar dan buah, cocok untuk menemani sesi bermain kucing.</div><div class="menu-item-price">Rp 25.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🌸</span><div class="menu-item-name">Butterfly Pea Tea</div><div class="menu-item-desc">Teh bunga cantik yang berubah warna, instagrammable!</div><div class="menu-item-price">Rp 22.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🥭</span><div class="menu-item-name">Mango Yakult</div><div class="menu-item-desc">Perpaduan mangga tropis segar dengan yakult yang menyegarkan.</div><div class="menu-item-price">Rp 24.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍵</span><div class="menu-item-name">Chamomile Honey</div><div class="menu-item-desc">Teh chamomile hangat dengan madu asli, menenangkan jiwa.</div><div class="menu-item-price">Rp 20.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🧃</span><div class="menu-item-name">Lemon Mint Soda</div><div class="menu-item-desc">Soda segar dengan perasan lemon dan daun mint pilihan.</div><div class="menu-item-price">Rp 22.000</div></div>
+    </div>
+    <div class="menu-panel" id="tab-snacks">
+      <div class="menu-item"><span class="menu-item-emoji">🥐</span><div class="menu-item-name">Croissant Butter</div><div class="menu-item-desc">Croissant renyah lapis demi lapis, hangat dan lumer di mulut.</div><div class="menu-item-price">Rp 18.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍰</span><div class="menu-item-name">Cat Paw Cake</div><div class="menu-item-desc">Kue spesial bertema cakar kucing, terlalu imut untuk dimakan!</div><div class="menu-item-price">Rp 25.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍞</span><div class="menu-item-name">French Toast</div><div class="menu-item-desc">Roti panggang telur dengan topping maple syrup dan buah segar.</div><div class="menu-item-price">Rp 22.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🧆</span><div class="menu-item-name">Waffle Crispy</div><div class="menu-item-desc">Waffle renyah dengan pilihan topping coklat atau stroberi.</div><div class="menu-item-price">Rp 28.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍪</span><div class="menu-item-name">Cookies Coklat</div><div class="menu-item-desc">Cookies homemade dengan choco chip lumer, cocok untuk ngemil.</div><div class="menu-item-price">Rp 15.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🥞</span><div class="menu-item-name">Mini Pancake</div><div class="menu-item-desc">Pancake mini fluffy dengan topping butter dan madu pilihan.</div><div class="menu-item-price">Rp 20.000</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="section-inner">
+    <div class="location-inner">
+      <div class="location-info">
+        <div class="section-label">Find Us</div>
+        <h2 class="section-title">Lokasi Kami</h2>
+        <p>Temukan kami di jantung Malang. Mudah diakses dan tersedia parkir luas untuk kenyamananmu.</p>
+        <div class="location-detail">
+          <div class="location-row">
+            <div class="location-row-icon">📍</div>
+            <div class="location-row-text">
+              <strong>Alamat</strong>
+              <span>Jl. Sudimoro, Jl. Manunggal Utara No.8, RT.04/RW.17,<br>Mojolangu, Kec. Lowokwaru, Kota Malang</span>
+            </div>
+          </div>
+          <div class="location-row">
+            <div class="location-row-icon">🕐</div>
+            <div class="location-row-text">
+              <strong>Jam Operasional</strong>
+              <span>Senin – Minggu: 10.00 – 22.00 WIB</span>
+            </div>
+          </div>
+          <div class="location-row">
+            <div class="location-row-icon">📞</div>
+            <div class="location-row-text">
+              <strong>WhatsApp / Reservasi</strong>
+              <span>+62 821-3262-0899</span>
+            </div>
+          </div>
+          <div class="location-row">
+            <div class="location-row-icon">📱</div>
+            <div class="location-row-text">
+              <strong>Sosial Media</strong>
+              <span>IG: @meow_catcafe.mlg | TikTok: @meowcatcafe_mlg</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://maps.google.com/?q=Jl.+Manunggal+Utara+No.8+Mojolangu+Malang" target="_blank" class="btn-maps">🗺️ Buka di Google Maps</a>
+      </div>
+      <div class="map-embed">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.4!2d112.6150!3d-7.9387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd629965e00b7a7%3A0x0!2sJl.+Manunggal+Utara+No.8%2C+Mojolangu%2C+Kec.+Lowokwaru%2C+Kota+Malang!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVASI -->
+<section id="reservasi">
+  <div class="section-inner">
+    <div class="reservasi-wrap">
+
+      <!-- LEFT: Info -->
+      <div class="reservasi-info">
+        <div class="section-label">Book a Spot</div>
+        <h2 class="section-title">Reservasi<br><em style="font-style:italic;color:var(--pink-dark)">Meja Kamu</em></h2>
+        <p>Pastikan tempat dudukmu sudah tersedia sebelum datang. Isi form reservasi di bawah dan konfirmasi akan langsung dikirim via WhatsApp.</p>
+        <div class="reservasi-meta">
+          <div class="reservasi-meta-item">
+            <div class="reservasi-meta-icon">🕐</div>
+            <div class="reservasi-meta-text">
+              <strong>Jam Operasional</strong>
+              <span>Senin – Minggu, 10.00 – 22.00 WIB</span>
+            </div>
+          </div>
+          <div class="reservasi-meta-item">
+            <div class="reservasi-meta-icon">👥</div>
+            <div class="reservasi-meta-text">
+              <strong>Kapasitas</strong>
+              <span>Maks. 15 orang per sesi reservasi</span>
+            </div>
+          </div>
+          <div class="reservasi-meta-item">
+            <div class="reservasi-meta-icon">⏱️</div>
+            <div class="reservasi-meta-text">
+              <strong>Durasi Sesi</strong>
+              <span>Standar 90 menit per kunjungan</span>
+            </div>
+          </div>
+          <div class="reservasi-meta-item">
+            <div class="reservasi-meta-icon">✅</div>
+            <div class="reservasi-meta-text">
+              <strong>Konfirmasi</strong>
+              <span>Maks. 1×24 jam setelah pengiriman form</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div class="reservasi-form-card">
+        <div style="margin-bottom:24px;">
+          <div style="font-size:18px;font-weight:700;font-family:'Playfair Display',serif;margin-bottom:4px;">Form Reservasi</div>
+          <div style="font-size:13px;color:var(--gray);">Isi semua field yang bertanda <span style="color:var(--pink-dark);font-weight:700;">*</span> wajib diisi</div>
+        </div>
+
+        <!-- Data Diri -->
+        <div style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:14px;">📋 Data Diri</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nama Lengkap <span class="req">*</span></label>
+            <input type="text" id="f_nama" placeholder="Nama kamu" />
+          </div>
+          <div class="form-group">
+            <label>No. WhatsApp <span class="req">*</span></label>
+            <input type="tel" id="f_wa" placeholder="08xxxxxxxxxx" />
+          </div>
+        </div>
+
+        <!-- Jadwal -->
+        <div style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:14px;margin-top:6px;">📅 Jadwal Kunjungan</div>
+        <div class="form-group">
+          <label>Pilih Tanggal <span class="req">*</span></label>
+          <div class="date-picker-wrapper" id="datePickerWrapper">
+            <div class="date-nav">
+              <button class="date-nav-btn" onclick="changeMonth(-1)">‹</button>
+              <span class="date-month-label" id="monthLabel"></span>
+              <button class="date-nav-btn" onclick="changeMonth(1)">›</button>
+            </div>
+            <div class="date-grid">
+              <div class="date-day-header">Min</div>
+              <div class="date-day-header">Sen</div>
+              <div class="date-day-header">Sel</div>
+              <div class="date-day-header">Rab</div>
+              <div class="date-day-header">Kam</div>
+              <div class="date-day-header">Jum</div>
+              <div class="date-day-header">Sab</div>
+            </div>
+            <div class="date-grid" id="dateGrid"></div>
+            <div id="selectedDateDisplay" style="margin-top:10px;font-size:13px;color:var(--gray);text-align:center;min-height:18px;"></div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Jam Kedatangan <span class="req">*</span></label>
+            <select id="f_jam">
+              <option value="">Pilih Jam</option>
+              <option>10:00</option><option>10:30</option>
+              <option>11:00</option><option>11:30</option>
+              <option>12:00</option><option>12:30</option>
+              <option>13:00</option><option>13:30</option>
+              <option>14:00</option><option>14:30</option>
+              <option>15:00</option><option>15:30</option>
+              <option>16:00</option><option>16:30</option>
+              <option>17:00</option><option>17:30</option>
+              <option>18:00</option><option>18:30</option>
+              <option>19:00</option><option>19:30</option>
+              <option>20:00</option><option>20:30</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Jumlah Tamu <span class="req">*</span></label>
+            <select id="f_tamu">
+              <option value="">Pilih Jumlah</option>
+              <option>1 Orang</option><option>2 Orang</option>
+              <option>3 Orang</option><option>4 Orang</option>
+              <option>5 Orang</option><option>6 Orang</option>
+              <option>7 Orang</option><option>8 Orang</option>
+              <option>9 Orang</option><option>10 Orang</option>
+              <option>Lebih dari 10 Orang</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Tipe Kunjungan</label>
+            <select id="f_tipe">
+              <option value="">Pilih Tipe</option>
+              <option>Santai / Ngopi</option>
+              <option>Kerja / Belajar</option>
+              <option>Ulang Tahun</option>
+              <option>Gathering / Arisan</option>
+              <option>Kencan / Date</option>
+              <option>Lainnya</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Ada Anak di Bawah 5 Tahun?</label>
+            <select id="f_anak">
+              <option value="Tidak">Tidak Ada</option>
+              <option value="Ya">Ya, Ada</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Catatan / Permintaan Khusus</label>
+          <textarea id="f_catatan" placeholder="Mis: meja dekat jendela, alergi tertentu, ada yang berulang tahun, dll."></textarea>
+        </div>
+
+        <!-- Reservation Rules -->
+        <div class="reservasi-rules">
+          <div class="reservasi-rules-title">📌 Ketentuan Reservasi</div>
+          <div class="reservasi-rules-list">
+            <div class="reservasi-rules-item">Reservasi wajib dikonfirmasi minimal <strong>2 jam sebelum</strong> kedatangan.</div>
+            <div class="reservasi-rules-item">Keterlambatan lebih dari <strong>15 menit</strong> tanpa konfirmasi dapat menyebabkan reservasi dibatalkan.</div>
+            <div class="reservasi-rules-item">Pembatalan reservasi harap dilakukan minimal <strong>1 jam sebelumnya</strong> melalui WhatsApp.</div>
+            <div class="reservasi-rules-item">Reservasi untuk <strong>10+ orang</strong> diwajibkan menghubungi kami terlebih dahulu via WhatsApp.</div>
+            <div class="reservasi-rules-item">Reservasi belum dianggap sah sampai mendapat <strong>konfirmasi balasan</strong> dari pihak cafe.</div>
+            <div class="reservasi-rules-item">Tamu diharapkan mematuhi <strong>semua peraturan cafe</strong>, terutama tata cara berinteraksi dengan kucing.</div>
+            <div class="reservasi-rules-item">Cafe berhak menolak reservasi jika kapasitas penuh atau terdapat informasi yang tidak valid.</div>
+          </div>
+        </div>
+
+        <div class="agree-row">
+          <input type="checkbox" id="f_agree" />
+          <label for="f_agree">Saya telah membaca dan <strong>menyetujui ketentuan reservasi</strong> serta peraturan cafe di atas.</label>
+        </div>
+
+        <button class="btn-reservasi" id="btnKirim" onclick="kirimReservasi()">
+          💬 Kirim Reservasi via WhatsApp
+        </button>
+        <div class="btn-reservasi-note">Kamu akan diarahkan ke WhatsApp dengan pesan yang sudah terisi otomatis</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name">Meow Cat Cafe</div>
+      <div class="footer-brand-sub">Malang · Est. 2023</div>
+      <p class="footer-brand-desc">Tempat di mana kopi yang nikmat bertemu dengan teman berbulu yang menggemaskan. Selamat datang di rumah kedua kamu.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigasi</h4>
+      <a href="#home">Home</a>
+      <a href="#meet-cats">Meet the Cats</a>
+      <a href="#menu">Menu</a>
+      <a href="#reservasi">Reservasi</a>
+      <a href="#location">Lokasi</a>
+    </div>
+    <div class="footer-col">
+      <h4>Hubungi Kami</h4>
+      <a href="https://wa.me/6282132620899" target="_blank">WhatsApp</a>
+      <a href="https://instagram.com/meow_catcafe.mlg" target="_blank">Instagram</a>
+      <a href="https://tiktok.com/@meowcatcafe_mlg" target="_blank">TikTok</a>
+      <div class="social-links" style="margin-top: 16px;">
+        <a href="https://instagram.com/meow_catcafe.mlg" target="_blank" class="social-link" title="Instagram">📸</a>
+        <a href="https://tiktok.com/@meowcatcafe_mlg" target="_blank" class="social-link" title="TikTok">🎵</a>
+        <a href="https://wa.me/6282132620899" target="_blank" class="social-link" title="WhatsApp">💬</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Meow Cat Cafe Malang. All rights reserved.</span>
+    <span>Made with ❤️ for cat lovers</span>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/6282132620899" target="_blank" class="wa-float" title="Chat WhatsApp">💬</a>
+
+<script>
+  // ── CAT DATA ──
+  const cats = [
+    { id:1,  name:"Mochi",   breed:"Persian Mix",    story:"Kucing rescue yang ditemukan terluka di jalanan Malang pada 2022. Kini Mochi telah pulih dan menjadi primadona utama cafe — selalu ada di meja terdepan untuk menyambut tamu." },
+    { id:2,  name:"Biscuit", breed:"British Shorthair", story:"Biscuit datang dari penitipan hewan yang tutup. Dengan sifatnya yang kalem dan suka duduk tenang, dia menjadi teman sempurna untuk bekerja di cafe." },
+    { id:3,  name:"Luna",    breed:"Maine Coon",     story:"Luna adalah kucing terbesar di cafe dengan bulu lebat seperti singa. Di balik penampilannya yang gagah, dia sangat manja dan suka dimanja." },
+    { id:4,  name:"Nori",    breed:"Scottish Fold",  story:"Telinganya yang unik melipat membuat Nori selalu jadi bintang foto tamu. Dia suka bermain dengan bola benang berwarna-warni." },
+    { id:5,  name:"Donut",   breed:"Ragdoll",        story:"Sesuai namanya, Donut gemuk menggemaskan dan suka dipeluk. Dia akan langsung lemas di pelukan siapapun seperti ragdoll sungguhan." },
+    { id:6,  name:"Taro",    breed:"Russian Blue",   story:"Taro didapat dari adopter yang tidak bisa merawatnya lagi. Bulunya keabu-abuan cantik dan matanya hijau zamrud yang memukau." },
+    { id:7,  name:"Oreo",    breed:"Tuxedo Cat",     story:"Hitam putih seperti biskuit Oreo, kucing ini sangat cerdas dan bisa melakukan beberapa trik sederhana yang selalu membuat tamu kagum." },
+    { id:8,  name:"Matcha",  breed:"Abyssinian",     story:"Matcha adalah kucing paling aktif di cafe. Energinya tak pernah habis dari pagi hingga malam, selalu siap bermain dengan tamu baru." },
+    { id:9,  name:"Sakura",  breed:"Japanese Bobtail", story:"Ekor pendeknya yang unik membuat Sakura mudah dikenali. Dia suka memanjat tempat tertinggi di cafe dan mengawasi semua orang dari atas." },
+    { id:10, name:"Pudding", breed:"Devon Rex",      story:"Bulu keriting Pudding membuatnya terlihat seperti boneka. Dia sangat suka dielus di bawah dagunya dan akan mengeong pelan jika puas." },
+    { id:11, name:"Wanbi",   breed:"Siamese",        story:"Wanbi adalah kucing paling vokal di cafe. Dia tidak segan 'berbicara' pada tamu yang ia sukai dengan suaranya yang khas dan merdu." },
+    { id:12, name:"Choco",   breed:"Burmese",        story:"Coklat susu dengan mata kuning keemasan, Choco suka duduk di pangkuan tamu yang sedang membaca buku atau bekerja dengan laptop." },
+    { id:13, name:"Kopi",    breed:"Domestic Short Hair", story:"Kopi lahir di cafe ini dan tidak pernah mengenal kehidupan luar. Dia adalah host terbaik yang selalu tahu cara membuat tamu merasa nyaman." },
+    { id:14, name:"Miso",    breed:"Norwegian Forest", story:"Bulu tebal Miso sangat membutuhkan perawatan ekstra. Setiap hari perawat cafe memastikan bulunya selalu bersih, wangi, dan mengembang sempurna." },
+    { id:15, name:"Peanut",  breed:"American Curl",  story:"Telinga melengkung ke belakang membuat Peanut selalu terlihat terkejut dan lucu. Dia kucing termuda dan penuh rasa ingin tahu tentang segala hal." },
+  ];
+
+  let currentCatId = null;
+  const favorites = new Set();
+
+  function renderCats() {
+    const grid = document.getElementById('catsGrid');
+    grid.innerHTML = cats.map(cat => `
+      <div class="cat-card" onclick="openModal(${cat.id})">
+        <div class="cat-img">
+          <span class="cat-img-number">${cat.id}</span>
+          <span class="cat-img-icon">🐱</span>
+          <div class="cat-img-overlay"><span>Lihat Profil</span></div>
+        </div>
+        <div class="cat-info">
+          <div class="cat-name">${cat.name}</div>
+          <div class="cat-breed">${cat.breed}</div>
+        </div>
+        <button class="cat-fav ${favorites.has(cat.id)?'active':''}"
+          onclick="event.stopPropagation(); toggleFav(${cat.id}, this)"
+          title="Favoritkan">
+          ${favorites.has(cat.id)?'❤️':'🤍'}
+        </button>
+      </div>
+    `).join('');
+  }
+
+  function toggleFav(id, btn) {
+    if (favorites.has(id)) { favorites.delete(id); btn.textContent='🤍'; btn.classList.remove('active'); }
+    else { favorites.add(id); btn.textContent='❤️'; btn.classList.add('active'); }
+  }
+
+  function openModal(id) {
+    const cat = cats.find(c => c.id === id);
+    currentCatId = id;
+    document.getElementById('modalImgNum').textContent = id;
+    document.getElementById('modalName').textContent = cat.name;
+    document.getElementById('modalBreed').textContent = cat.breed;
+    document.getElementById('modalStory').textContent = cat.story;
+    const btn = document.getElementById('modalFavBtn');
+    if (favorites.has(id)) { btn.textContent = '❤️ Difavoritkan!'; btn.classList.add('active'); }
+    else { btn.textContent = '🤍 Favoritkan Kucing Ini'; btn.classList.remove('active'); }
+    document.getElementById('catModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('catModal').classList.remove('open');
+    document.body.style.overflow = '';
+    renderCats();
+  }
+
+  function toggleFavModal() {
+    const btn = document.getElementById('modalFavBtn');
+    if (favorites.has(currentCatId)) {
+      favorites.delete(currentCatId);
+      btn.textContent = '🤍 Favoritkan Kucing Ini';
+      btn.classList.remove('active');
+    } else {
+      favorites.add(currentCatId);
+      btn.textContent = '❤️ Difavoritkan!';
+      btn.classList.add('active');
+    }
+  }
+
+  document.getElementById('catModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // ── MENU TABS ──
+  function switchTab(btn, id) {
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + id).classList.add('active');
+  }
+
+  // ── NAVBAR SCROLL ──
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // ── HAMBURGER ──
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+  }));
+
+  // ── INIT ──
+  renderCats();
+
+  // ── DATE PICKER ──
+  let currentYear, currentMonth, selectedDate = null;
+  const MONTHS_ID = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  const today = new Date(); today.setHours(0,0,0,0);
+
+  function initCalendar() {
+    currentYear = today.getFullYear();
+    currentMonth = today.getMonth();
+    renderCalendar();
+  }
+
+  function changeMonth(dir) {
+    currentMonth += dir;
+    if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+    if (currentMonth < 0)  { currentMonth = 11; currentYear--; }
+    renderCalendar();
+  }
+
+  function renderCalendar() {
+    document.getElementById('monthLabel').textContent = MONTHS_ID[currentMonth] + ' ' + currentYear;
+    const grid = document.getElementById('dateGrid');
+    grid.innerHTML = '';
+    const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    for (let i = 0; i < firstDay; i++) {
+      const el = document.createElement('div'); el.className = 'date-cell empty'; grid.appendChild(el);
+    }
+    for (let d = 1; d <= daysInMonth; d++) {
+      const el = document.createElement('button');
+      el.className = 'date-cell';
+      el.textContent = d;
+      const cellDate = new Date(currentYear, currentMonth, d);
+      if (cellDate < today) { el.disabled = true; }
+      else {
+        if (cellDate.toDateString() === today.toDateString()) el.classList.add('today');
+        if (selectedDate && cellDate.toDateString() === selectedDate.toDateString()) el.classList.add('selected');
+        el.onclick = () => selectDate(cellDate, el);
+      }
+      grid.appendChild(el);
+    }
+  }
+
+  function selectDate(date, el) {
+    selectedDate = date;
+    document.querySelectorAll('.date-cell').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+    document.getElementById('selectedDateDisplay').textContent =
+      '📅 ' + days[date.getDay()] + ', ' + date.getDate() + ' ' + MONTHS_ID[date.getMonth()] + ' ' + date.getFullYear();
+  }
+
+  initCalendar();
+
+  // ── SEND RESERVATION TO WA ──
+  function kirimReservasi() {
+    const nama   = document.getElementById('f_nama').value.trim();
+    const wa     = document.getElementById('f_wa').value.trim();
+    const jam    = document.getElementById('f_jam').value;
+    const tamu   = document.getElementById('f_tamu').value;
+    const tipe   = document.getElementById('f_tipe').value || 'Tidak disebutkan';
+    const anak   = document.getElementById('f_anak').value;
+    const catatan= document.getElementById('f_catatan').value.trim() || '-';
+    const agree  = document.getElementById('f_agree').checked;
+
+    if (!nama)         { alert('⚠️ Nama lengkap wajib diisi.'); return; }
+    if (!wa)           { alert('⚠️ No. WhatsApp wajib diisi.'); return; }
+    if (!selectedDate) { alert('⚠️ Tanggal kunjungan wajib dipilih.'); return; }
+    if (!jam)          { alert('⚠️ Jam kedatangan wajib dipilih.'); return; }
+    if (!tamu)         { alert('⚠️ Jumlah tamu wajib dipilih.'); return; }
+    if (!agree)        { alert('⚠️ Kamu harus menyetujui ketentuan reservasi terlebih dahulu.'); return; }
+
+    const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+    const MONTHS_SHORT = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+    const tglStr = days[selectedDate.getDay()] + ', ' + selectedDate.getDate() + ' ' + MONTHS_SHORT[selectedDate.getMonth()] + ' ' + selectedDate.getFullYear();
+
+    const msg = `🐾 *RESERVASI MEOW CAT CAFE MALANG*
+
+👤 *Nama:* ${nama}
+📱 *WhatsApp:* ${wa}
+
+📅 *Tanggal:* ${tglStr}
+🕐 *Jam Kedatangan:* ${jam} WIB
+👥 *Jumlah Tamu:* ${tamu}
+🎯 *Tipe Kunjungan:* ${tipe}
+👶 *Ada Anak < 5 Tahun:* ${anak}
+📝 *Catatan:* ${catatan}
+
+✅ _Saya telah membaca dan menyetujui semua ketentuan reservasi dan peraturan cafe._
+
+_Mohon konfirmasi ketersediaan meja. Terima kasih!_ 🙏`;
+
+    const encoded = encodeURIComponent(msg);
+    window.open('https://wa.me/6282132620899?text=' + encoded, '_blank');
+  }
+</script>
+</body>
+</html>
