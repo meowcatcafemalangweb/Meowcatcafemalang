@@ -723,39 +723,72 @@
     <div class="menu-header">
       <div class="section-label">Our Menu</div>
       <h2 class="section-title">Nikmati Menu Kami</h2>
-      <p class="section-desc">Dari kopi specialty hingga minuman segar dan camilan, semua tersedia untuk menemani waktu santaimu bersama para kucing.</p>
+      <p class="section-desc">Menu lezat dari Meow Menu Malang, mulai dari kopi klasik hingga snack gurih untuk menemanimu bermain.</p>
     </div>
     <div class="menu-tabs">
       <button class="menu-tab active" onclick="switchTab(this,'coffee')">☕ Coffee</button>
       <button class="menu-tab" onclick="switchTab(this,'noncoffee')">🧋 Non-Coffee</button>
-      <button class="menu-tab" onclick="switchTab(this,'snacks')">🍪 Snacks</button>
+      <button class="menu-tab" onclick="switchTab(this,'snacks')">🍪 Food & Snacks</button>
     </div>
+
     <div class="menu-panel active" id="tab-coffee">
-      <div class="menu-item"><span class="menu-item-emoji">☕</span><div class="menu-item-name">Americano</div><div class="menu-item-desc">Espresso bold dengan air panas, rasa kopi yang bersih dan kuat.</div><div class="menu-item-price">Rp 15.000</div></div>
-      <div class="menu-item"><span class="menu-item-emoji">🥛</span><div class="menu-item-name">Americano Hot</div><div class="menu-item-desc">Espresso smooth dipadukan susu segar steamed, creamy dan lembut.</div><div class="menu-item-price">Rp 14.000</div></div>
-      <div class="menu-item"><span class="menu-item-emoji">🍫</span><div class="menu-item-name">Vietnam Drip</div><div class="menu-item-desc">Perpaduan espresso, coklat, dan susu yang memanjakan lidah.</div><div class="menu-item-price">Rp 30.000</div></div>
-      <div class="menu-item"><span class="menu-item-emoji">🌿</span><div class="menu-item-name">Matcha Latte</div><div class="menu-item-desc">Matcha premium Jepang dengan sentuhan susu segar yang creamy.</div><div class="menu-item-price">Rp 32.000</div></div>
-      <div class="menu-item"><span class="menu-item-emoji">🧊</span><div class="menu-item-name">Cold Brew</div><div class="menu-item-desc">Kopi seduh dingin 12 jam, smooth tanpa rasa asam yang berlebihan.</div><div class="menu-item-price">Rp 28.000</div></div>
-      <div class="menu-item"><span class="menu-item-emoji">🍮</span><div class="menu-item-name">Caramel Macchiato</div><div class="menu-item-desc">Vanilla latte dengan siraman karamel manis di atasnya.</div><div class="menu-item-price">Rp 32.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🧊</span><div class="menu-item-name">Americano Ice</div><div class="menu-item-price">15K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🔥</span><div class="menu-item-name">Americano Hot</div><div class="menu-item-price">14K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🥛</span><div class="menu-item-name">Cappuccino Ice</div><div class="menu-item-price">18K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">☕</span><div class="menu-item-name">Cappuccino Hot</div><div class="menu-item-price">18K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🇻🇳</span><div class="menu-item-name">Vietnam Drip</div><div class="menu-item-price">16K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🖤</span><div class="menu-item-name">Kopi Tubruk</div><div class="menu-item-price">10K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🥑</span><div class="menu-item-name">Avocado Coffee Ice</div><div class="menu-item-price">18K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍮</span><div class="menu-item-name">Tiramisu Ice/Hot</div><div class="menu-item-price">18K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🐱</span><div class="menu-item-name">Ragdol Ice/Hot</div><div class="menu-item-price">18K</div></div>
     </div>
+
     <div class="menu-panel" id="tab-noncoffee">
-      <div class="menu-item"><span class="menu-item-emoji">🫐</span><div class="menu-item-name">Taro Latte</div><div class="menu-item-desc">Susu segar dengan bubuk taro ungu yang lembut dan manis alami.</div><div class="menu-item-price">Rp 28.000</div></div>
-      <div class="menu-item"><span class="menu-item-emoji">🍓</span><div class="menu-item-name">Strawberry Smoothie</div><div class="menu-item-desc">Segar dan buah, cocok untuk menemani sesi bermain kucing.</div><div class="menu-item-price">Rp 25.000</div></div>
-      <div class="menu-item"><span class="menu-item-emoji">🌸</span><div class="menu-item-name">Butterfly Pea Tea</div><div class="menu-item-desc">Teh bunga cantik yang berubah warna, instagrammable!</div><div class="menu-item-price">Rp 22.000</div></div>
-      <div class="menu-item"><span class="menu-item-emoji">🥭</span><div class="menu-item-name">Mango Yakult</div><div class="menu-item-desc">Perpaduan mangga tropis segar dengan yakult yang menyegarkan.</div><div class="menu-item-price">Rp 24.000</div></div>
-      <div class="menu-item"><span class="menu-item-emoji">🍵</span><div class="menu-item-name">Chamomile Honey</div><div class="menu-item-desc">Teh chamomile hangat dengan madu asli, menenangkan jiwa.</div><div class="menu-item-price">Rp 20.000</div></div>
-      <div class="menu-item"><span class="menu-item-emoji">🧃</span><div class="menu-item-name">Lemon Mint Soda</div><div class="menu-item-desc">Soda segar dengan perasan lemon dan daun mint pilihan.</div><div class="menu-item-price">Rp 22.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍵</span><div class="menu-item-name">Matcha Ice/Hot</div><div class="menu-item-price">18K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍓</span><div class="menu-item-name">Strawberry Ice/Hot</div><div class="menu-item-price">18K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍫</span><div class="menu-item-name">Chocolate Ice/Hot</div><div class="menu-item-price">18K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">💜</span><div class="menu-item-name">Red Velvet Ice/Hot</div><div class="menu-item-price">18K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🥭</span><div class="menu-item-name">Mango Ice/Hot</div><div class="menu-item-price">18K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🥤</span><div class="menu-item-name">Blue Paradise</div><div class="menu-item-price">18K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍋</span><div class="menu-item-name">Lemon Squash</div><div class="menu-item-price">14K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍃</span><div class="menu-item-name">Lychee Squash</div><div class="menu-item-price">14K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍵</span><div class="menu-item-name">Lemon Tea Ice/Hot</div><div class="menu-item-price">12K / 11K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍹</span><div class="menu-item-name">Lychee Tea Ice/Hot</div><div class="menu-item-price">12K / 11K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">☕</span><div class="menu-item-name">Black Tea Ice/Hot</div><div class="menu-item-price">10K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">💧</span><div class="menu-item-name">Mineral Water</div><div class="menu-item-price">5K</div></div>
     </div>
+
     <div class="menu-panel" id="tab-snacks">
-      <div class="menu-item"><span class="menu-item-emoji">🥐</span><div class="menu-item-name">Croissant Butter</div><div class="menu-item-desc">Croissant renyah lapis demi lapis, hangat dan lumer di mulut.</div><div class="menu-item-price">Rp 18.000</div></div>
-      <div class="menu-item"><span class="menu-item-emoji">🍰</span><div class="menu-item-name">Cat Paw Cake</div><div class="menu-item-desc">Kue spesial bertema cakar kucing, terlalu imut untuk dimakan!</div><div class="menu-item-price">Rp 25.000</div></div>
-      <div class="menu-item"><span class="menu-item-emoji">🍞</span><div class="menu-item-name">French Toast</div><div class="menu-item-desc">Roti panggang telur dengan topping maple syrup dan buah segar.</div><div class="menu-item-price">Rp 22.000</div></div>
-      <div class="menu-item"><span class="menu-item-emoji">🧆</span><div class="menu-item-name">Waffle Crispy</div><div class="menu-item-desc">Waffle renyah dengan pilihan topping coklat atau stroberi.</div><div class="menu-item-price">Rp 28.000</div></div>
-      <div class="menu-item"><span class="menu-item-emoji">🍪</span><div class="menu-item-name">Cookies Coklat</div><div class="menu-item-desc">Cookies homemade dengan choco chip lumer, cocok untuk ngemil.</div><div class="menu-item-price">Rp 15.000</div></div>
-      <div class="menu-item"><span class="menu-item-emoji">🥞</span><div class="menu-item-name">Mini Pancake</div><div class="menu-item-desc">Pancake mini fluffy dengan topping butter dan madu pilihan.</div><div class="menu-item-price">Rp 20.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍱</span><div class="menu-item-name">Catsudon</div><div class="menu-item-price">25K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍛</span><div class="menu-item-name">Nasi Goreng Persia</div><div class="menu-item-price">23K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍝</span><div class="menu-item-name">Mie Goreng Domestik</div><div class="menu-item-price">23K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍗</span><div class="menu-item-name">Chicken Popcorn</div><div class="menu-item-price">20K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍩</span><div class="menu-item-name">Exo Donuts</div><div class="menu-item-price">16K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🥟</span><div class="menu-item-name">Risol Mayo / Siomay</div><div class="menu-item-price">16K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🥟</span><div class="menu-item-name">Karipap Coklat</div><div class="menu-item-price">16K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🧀</span><div class="menu-item-name">Tahu Bakso / Walik</div><div class="menu-item-price">16K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍟</span><div class="menu-item-name">French Fries</div><div class="menu-item-price">16K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🌭</span><div class="menu-item-name">Russian Sausage</div><div class="menu-item-price">16K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍛</span><div class="menu-item-name">Turkish / Siamese Pack</div><div class="menu-item-price">33K / 23K</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍚</span><div class="menu-item-name">Nasi Putih</div><div class="menu-item-price">5K</div></div>
     </div>
   </div>
 </section>
+
+<script>
+  // Fungsi buat pindah tab menu (Pastikan ini ada di dalam tag <script> lu)
+  function switchTab(btn, tabId) {
+    // Hapus class active dari semua button tab
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    // Tambah class active ke button yang diklik
+    btn.classList.add('active');
+    
+    // Sembunyikan semua panel menu
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    // Tampilkan panel yang sesuai ID
+    document.getElementById('tab-' + tabId).classList.add('active');
+  }
+</script>
 
 <!-- LOCATION -->
 <section id="location">
