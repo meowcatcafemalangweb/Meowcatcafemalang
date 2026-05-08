@@ -823,11 +823,10 @@
     }
   ];
 
- function renderCats() {
+function renderCats() {
     const grid = document.getElementById('catsGrid');
     if (!grid) return;
 
-    // Pakai nama 'catsData' supaya sinkron dengan daftar kucingmu
     grid.innerHTML = catsData.map((cat, index) => {
       const isFav = favorites.has(index);
       return `
@@ -857,14 +856,27 @@
     } else {
       favorites.add(id);
     }
-    renderCats(); // Gambar ulang grid supaya hatinya berubah warna
+    renderCats(); // Ini penting supaya icon 🤍 berubah jadi ❤️ otomatis
   }
+
   function openModal(index) {
     const cat = catsData[index];
+    currentCatId = index; // Tambahkan ini supaya modal tahu kucing mana yang lagi dibuka
     document.getElementById('modalName').innerText = cat.name;
     document.getElementById('modalBreed').innerText = cat.breed;
     document.getElementById('modalStory').innerText = cat.story;
     document.getElementById('modalImgContainer').innerHTML = `<img src="${cat.img}" style="width:100%; height:100%; object-fit:cover;">`;
+    
+    // Update tombol favorit di dalam modal juga
+    const modalBtn = document.getElementById('modalFavBtn');
+    if (favorites.has(index)) {
+        modalBtn.innerHTML = "❤️ Difavoritkan";
+        modalBtn.classList.add('active');
+    } else {
+        modalBtn.innerHTML = "🤍 Favoritkan";
+        modalBtn.classList.remove('active');
+    }
+
     document.getElementById('catModal').classList.add('open');
   }
 
@@ -875,24 +887,15 @@
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
   }
-function toggleFavorite(element, event) {
-    // 1. Mencegah modal terbuka saat kita klik ikon hati
-    event.stopPropagation(); 
-    
-    // 2. Tambah/hapus class 'active' untuk ganti warna
-    element.classList.toggle('active');
-    
-    // 3. Tambahkan sedikit logika animasi biar keren
-    if (element.classList.contains('active')) {
-      element.style.color = '#ff4757'; // Jadi Merah
-      element.style.transform = 'scale(1.3)';
-    } else {
-      element.style.color = 'white'; // Balik ke Putih
-      element.style.transform = 'scale(1)';
-    }
+
+  // Fungsi khusus untuk tombol favorit yang ADA DI DALAM MODAL
+  function toggleFavModal() {
+    toggleFav(currentCatId);
+    // Update tulisan tombol modal setelah diklik
+    openModal(currentCatId); 
   }
-  // Menjalankan fungsi saat halaman terbuka
-window.addEventListener('DOMContentLoaded', renderCats);
+
+  window.addEventListener('DOMContentLoaded', renderCats);
 </script>
 
 </body>
