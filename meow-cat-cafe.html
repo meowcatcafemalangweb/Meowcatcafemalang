@@ -1018,8 +1018,9 @@
 <!-- WhatsApp Float -->
 <a href="https://wa.me/6282132620899" target="_blank" class="wa-float" title="Chat WhatsApp">💬</a>
 
-  <script>
-  // ── CAT DATA (Link Foto Kembali & Fix Tanda Petik Amora) ──
+ <script>
+  // ── CAT DATA (SUDAH ADA LINK FOTO & FIX AMORA) ──
+  // Gunakan data ini agar link gambar yang sudah kamu input tidak hilang
   const cats = [
     { id:1,  name:"Amora",   breed:"Persian Medium",   img: "https://lh3.googleusercontent.com/d/17hRvvo20Q_p82rTNtuZOXTX-zp_rrbjI", story:"Amora adalah ratu di cafe ini dengan bulu kapasnya yang lembut. Meskipun terlihat anggun dan tenang, Amora sangat suka jika dagunya dielus perlahan. Dia sering ditemukan sedang bersantai di spot paling tinggi untuk mengawasi teman-temannya." },
     { id:2,  name:"Biscuit", breed:"British Shorthair", img: "https://lh3.googleusercontent.com/d/17hRvvo20Q_p82rTNtuZOXTX-zp_rrbjI", story:"Biscuit datang dari penitipan hewan yang tutup. Dengan sifatnya yang kalem dan suka duduk tenang, dia menjadi teman sempurna untuk bekerja di cafe." },
@@ -1038,12 +1039,17 @@
     { id:15, name:"Peanut",  breed:"American Curl",    img: "https://lh3.googleusercontent.com/d/1ahZjAl7CMo52ioEopuBtu0cgtXR8WUvc", story:"Telinga melengkung ke belakang membuat Peanut selalu terlihat terkejut dan lucu. Dia kucing termuda dan penuh rasa ingin tahu tentang segala hal." },
   ];
 
+  let currentCatId = null;
+  const favorites = new Set();
+
+  // ── FUNGSI RENDER (DIPERBAIKI AGAR GAMBAR MUNCUL) ──
   function renderCats() {
     const grid = document.getElementById('catsGrid');
+    if (!grid) return;
     grid.innerHTML = cats.map(cat => `
       <div class="cat-card" onclick="openModal(${cat.id})">
         <div class="cat-img">
-          <img src="${cat.img}" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none'">
+          <img src="${cat.img}" alt="${cat.name}" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='https://placecats.com/neo/300/400'">
           <div class="cat-img-overlay"><span>Lihat Profil</span></div>
         </div>
         <div class="cat-info">
@@ -1051,23 +1057,21 @@
           <div class="cat-breed">${cat.breed}</div>
         </div>
         <button class="cat-fav ${favorites.has(cat.id)?'active':''}"
-          onclick="event.stopPropagation(); toggleFav(${cat.id}, this)"
-          title="Favoritkan">
+          onclick="event.stopPropagation(); toggleFav(${cat.id}, this)">
           ${favorites.has(cat.id)?'❤️':'🤍'}
         </button>
       </div>
     `).join('');
   }
 
+  // Fungsi openModal diperbaiki untuk menampilkan gambar di modal
   function openModal(id) {
     const cat = cats.find(c => c.id === id);
     currentCatId = id;
     
-    // Menampilkan gambar di dalam modal
-    const modalImgContainer = document.getElementById('modalImgContainer');
-    if(modalImgContainer) {
-        modalImgContainer.innerHTML = `<img src="${cat.img}" style="width:100%; height:100%; object-fit:cover;">`;
-    }
+    // Pastikan ID elemen ini sesuai dengan HTML modal kamu
+    const modalImg = document.getElementById('modalImgContainer');
+    if(modalImg) modalImg.innerHTML = `<img src="${cat.img}" style="width:100%; height:100%; object-fit:cover;">`;
     
     document.getElementById('modalName').textContent = cat.name;
     document.getElementById('modalBreed').textContent = cat.breed;
@@ -1076,32 +1080,30 @@
     const btn = document.getElementById('modalFavBtn');
     if (favorites.has(id)) { btn.textContent = '❤️ Difavoritkan!'; btn.classList.add('active'); }
     else { btn.textContent = '🤍 Favoritkan Kucing Ini'; btn.classList.remove('active'); }
-    
     document.getElementById('catModal').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
-  
-    function closeModal() {
-      document.getElementById('catModal').classList.remove('open');
-      document.body.style.overflow = '';
-      renderCats();
-    }
-  
-   function toggleFav(id, btn) {
-      if (favorites.has(id)) {
-        favorites.delete(id);
-        if(btn) btn.textContent = '🤍';
-      } else {
-        favorites.add(id);
-        if(btn) btn.textContent = '❤️';
-      }
-      // Update tampilan grid supaya sinkron kalau ada yang berubah
-      renderCats(); 
-    }
-  
-    document.getElementById('catModal').addEventListener('click', function(e) {
-      if (e.target === this) closeModal();
-    });
+
+  // Sisa fungsi lainnya (closeModal, toggleFav, dll) tetap sama
+  function closeModal() {
+    document.getElementById('catModal').classList.remove('open');
+    document.body.style.overflow = '';
+    renderCats();
+  }
+
+  function toggleFav(id, btn) {
+    if (favorites.has(id)) { favorites.delete(id); if(btn) btn.textContent='🤍'; }
+    else { favorites.add(id); if(btn) btn.textContent='❤️'; }
+    renderCats();
+  }
+
+  document.getElementById('catModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // Jalankan render pertama kali
+  renderCats();
+</script>
 
   // ── MENU TABS ──
   function switchTab(btn, id) {
