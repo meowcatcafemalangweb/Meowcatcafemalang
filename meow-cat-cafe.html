@@ -641,17 +641,16 @@
 <!-- CAT MODAL -->
 <div class="modal-overlay" id="catModal">
   <div class="modal">
-    <div class="modal-img">
-      <span class="modal-img-num" id="modalImgNum"></span>
+    <div class="modal-img" id="modalImgContainer">
       <span class="modal-img-emoji">🐱</span>
     </div>
     <div class="modal-body">
       <div class="modal-name" id="modalName"></div>
       <div class="modal-breed" id="modalBreed"></div>
-      <div class="modal-section-label">Sejarah Kucing</div>
+      <div class="modal-section-label">Tentang Kucing Ini</div>
       <p class="modal-story" id="modalStory"></p>
       <div class="modal-footer">
-        <button class="btn-fav-modal" id="modalFavBtn" onclick="toggleFavModal()">🤍 Favoritkan Kucing Ini</button>
+        <button class="btn-fav-modal" id="modalFavBtn" onclick="toggleFavModal()">🤍 Favoritkan</button>
         <button class="modal-close" onclick="closeModal()">Tutup</button>
       </div>
     </div>
@@ -1019,7 +1018,7 @@
 <script>
   // ── CAT DATA ──
   const cats = [
-    { id:1,  name:"Mochi",   breed:"Persian Mix",    story:"Kucing rescue yang ditemukan terluka di jalanan Malang pada 2022. Kini Mochi telah pulih dan menjadi primadona utama cafe — selalu ada di meja terdepan untuk menyambut tamu." },
+    { id:1,  name:"Amora",   breed:"Persian Medium",    story:Amora adalah ratu di cafe ini dengan bulu kapasnya yang lembut. Meskipun terlihat anggun dan tenang, Amora sangat suka jika dagunya dielus perlahan. Dia sering ditemukan sedang bersantai di spot paling tinggi untuk mengawasi teman-temannya." },
     { id:2,  name:"Biscuit", breed:"British Shorthair", story:"Biscuit datang dari penitipan hewan yang tutup. Dengan sifatnya yang kalem dan suka duduk tenang, dia menjadi teman sempurna untuk bekerja di cafe." },
     { id:3,  name:"Luna",    breed:"Maine Coon",     story:"Luna adalah kucing terbesar di cafe dengan bulu lebat seperti singa. Di balik penampilannya yang gagah, dia sangat manja dan suka dimanja." },
     { id:4,  name:"Nori",    breed:"Scottish Fold",  story:"Telinganya yang unik melipat membuat Nori selalu jadi bintang foto tamu. Dia suka bermain dengan bola benang berwarna-warni." },
