@@ -714,190 +714,7 @@
   </div>
 </section>
 
-<script>
-  const catsData = [
-    {
-      name: "Amora",
-      breed: "Persian Medium",
-      story: "Amora adalah ratu di cafe ini dengan bulu kapasnya yang lembut.",
-      img: "https://lh3.googleusercontent.com/d/17hRvvo20Q_p82rTNtuZOXTX-zp_rrbjI", 
-      emoji: "🐈"
-    },
-    {
-      name: "Jayus",
-      breed: "Domestic",
-      story: "Jayus adalah definisi kucing lokal yang penuh energi!",
-      img: "https://lh3.googleusercontent.com/d/17hRvvo20Q_p82rTNtuZOXTX-zp_rrbjI", 
-      emoji: "🐾"
-    },
-    {
-      name: "Makki",
-      breed: "Persian Medium",
-      story: "Makki adalah si gembul yang sangat kalem.",
-      img: "https://lh3.googleusercontent.com/d/1Z-XZe-1Ee9iVF6XnvS466n_NMtWXCKEy", 
-      emoji: "☁️"
-    },
-    {
-      name: "Minion",
-      breed: "Domestik",
-      story: "Minion adalah kucing kecil yang nakal tapi sangat menggemaskan.",
-      img: "https://lh3.googleusercontent.com/d/1ZFNxXwmlyTDblV3M65zO8dbbyR6rbCmk", 
-      emoji: "🍌"
-    },
-    {
-      name: "Mona",
-      breed: "Ragdoll",
-      story: "Mona adalah primadona dengan mata biru yang indah.",
-      img: "https://lh3.googleusercontent.com/d/1nQX5i5udjX-VAJvdqq6Flo0qTtbou9tI", 
-      emoji: "🎀"
-    },
-    {
-      name: "Naomi",
-      breed: "Scottish Fold",
-      story: "Naomi memiliki ciri khas telinga terlipat yang imut.",
-      img: "https://lh3.googleusercontent.com/d/13Eet0wZasH0mYahfde7_3nuYpZo2socP", 
-      emoji: "🦉"
-    },
-    {
-      name: "Naruto",
-      breed: "Munchkin Himalaya",
-      story: "Naruto adalah si petualang berkaki pendek!",
-      img: "https://lh3.googleusercontent.com/d/1ZcqSJMJJ_eQxKL6dgFUSduJc_Il33bHZ", 
-      emoji: "🍥"
-    },
-    {
-      name: "Pesek",
-      breed: "Peaknose",
-      story: "Pesek adalah bintang utama dengan wajahnya yang super unik.",
-      img: "https://lh3.googleusercontent.com/d/1EWA7oNW-2wB5DgexdzKzt5US_b-AmiAA", 
-      emoji: "🍞"
-    },
-    {
-      name: "Poppy",
-      breed: "Persian Medium",
-      story: "Poppy adalah kucing yang sangat manis dan ceria.",
-      img: "https://lh3.googleusercontent.com/d/1l1UT0lW3N0d1CzRdVZbfzzSKHnaAW4Xk", 
-      emoji: "🌸"
-    },
-    {
-      name: "Roshi",
-      breed: "Persian Medium",
-      story: "Roshi adalah si 'kakek bijak' yang sangat sabar.",
-      img: "https://lh3.googleusercontent.com/d/1jFe3EXtpz4Yid09cGTG_37iwwbFXgqPk", 
-      emoji: "🐢"
-    },
-    {
-      name: "Sake",
-      breed: "Persian Medium",
-      story: "Sake adalah kucing yang terlihat tenang namun penasaran.",
-      img: "https://lh3.googleusercontent.com/d/1Tr9VYrZgbdKOg8WeFrXUX58ilYRh3hbT", 
-      emoji: "🍶"
-    },
-    {
-      name: "Shinju",
-      breed: "Scottish Fold",
-      story: "Shinju memiliki wajah bulat dan telinga lipat.",
-      img: "https://lh3.googleusercontent.com/d/1k1DLO_ixZI4BeimCBslTYJ42JmYwXV4t", 
-      emoji: "💎"
-    },
-    {
-      name: "Veren",
-      breed: "Persian Medium",
-      story: "Veren adalah kucing yang sangat anggun.",
-      img: "https://lh3.googleusercontent.com/d/1zBYS7KzegT12C8O67hOjLcfrtp9quGlF", 
-      emoji: "✨"
-    },
-    {
-      name: "Willy",
-      breed: "Domestic",
-      story: "Willy adalah kucing lokal yang sangat cerdas.",
-      img: "https://lh3.googleusercontent.com/d/1NnmbZISHHulWN4vs1iJx92mLn3pfKct4", 
-      emoji: "🎖️"
-    },
-    {
-      name: "Yoora",
-      breed: "Persian Medium",
-      story: "Yoora adalah si pemalu yang berhati emas.",
-      img: "https://lh3.googleusercontent.com/d/1ahZjAl7CMo52ioEopuBtu0cgtXR8WUvc", 
-      emoji: "🌙"
-    }
-  ];
-
-function renderCats() {
-    const grid = document.getElementById('catsGrid');
-    if (!grid) return;
-
-    grid.innerHTML = catsData.map((cat, index) => {
-      const isFav = favorites.has(index);
-      return `
-        <div class="cat-card">
-          <div class="cat-img" onclick="openModal(${index})">
-            <img src="${cat.img}" style="width: 100%; height: 100%; object-fit: cover;">
-            <div class="cat-img-overlay"><span>Lihat Profil</span></div>
-          </div>
-          
-          <button class="cat-fav ${isFav ? 'active' : ''}" 
-                  onclick="event.stopPropagation(); toggleFav(${index})">
-            ${isFav ? '❤️' : '🤍'}
-          </button>
-
-          <div class="cat-info" onclick="openModal(${index})">
-            <div class="cat-name">${cat.name}</div>
-            <div class="cat-breed">${cat.breed}</div>
-          </div>
-        </div>
-      `;
-    }).join('');
-  }
-
-  function toggleFav(id) {
-    if (favorites.has(id)) {
-      favorites.delete(id);
-    } else {
-      favorites.add(id);
-    }
-    renderCats(); // Ini penting supaya icon 🤍 berubah jadi ❤️ otomatis
-  }
-
-  function openModal(index) {
-    const cat = catsData[index];
-    currentCatId = index; // Tambahkan ini supaya modal tahu kucing mana yang lagi dibuka
-    document.getElementById('modalName').innerText = cat.name;
-    document.getElementById('modalBreed').innerText = cat.breed;
-    document.getElementById('modalStory').innerText = cat.story;
-    document.getElementById('modalImgContainer').innerHTML = `<img src="${cat.img}" style="width:100%; height:100%; object-fit:cover;">`;
-    
-    // Update tombol favorit di dalam modal juga
-    const modalBtn = document.getElementById('modalFavBtn');
-    if (favorites.has(index)) {
-        modalBtn.innerHTML = "❤️ Difavoritkan";
-        modalBtn.classList.add('active');
-    } else {
-        modalBtn.innerHTML = "🤍 Favoritkan";
-        modalBtn.classList.remove('active');
-    }
-
-    document.getElementById('catModal').classList.add('open');
-  }
-
-  function closeModal() {
-    document.getElementById('catModal').classList.remove('open');
-  }
-
-  function toggleNav() {
-    document.getElementById('navLinks').classList.toggle('open');
-  }
-
-  // Fungsi khusus untuk tombol favorit yang ADA DI DALAM MODAL
-  function toggleFavModal() {
-    toggleFav(currentCatId);
-    // Update tulisan tombol modal setelah diklik
-    openModal(currentCatId); 
-  }
-
-  window.addEventListener('DOMContentLoaded', renderCats);
-</script>
-
+   
 </body>
 </html>
 <!-- MENU -->
@@ -1201,36 +1018,32 @@ function renderCats() {
 <!-- WhatsApp Float -->
 <a href="https://wa.me/6282132620899" target="_blank" class="wa-float" title="Chat WhatsApp">💬</a>
 
-<script>
-  // ── CAT DATA ──
+  <script>
+  // ── CAT DATA (Link Foto Kembali & Fix Tanda Petik Amora) ──
   const cats = [
-    { id:1,  name:"Amora",   breed:"Persian Medium",    story:Amora adalah ratu di cafe ini dengan bulu kapasnya yang lembut. Meskipun terlihat anggun dan tenang, Amora sangat suka jika dagunya dielus perlahan. Dia sering ditemukan sedang bersantai di spot paling tinggi untuk mengawasi teman-temannya." },
-    { id:2,  name:"Biscuit", breed:"British Shorthair", story:"Biscuit datang dari penitipan hewan yang tutup. Dengan sifatnya yang kalem dan suka duduk tenang, dia menjadi teman sempurna untuk bekerja di cafe." },
-    { id:3,  name:"Luna",    breed:"Maine Coon",     story:"Luna adalah kucing terbesar di cafe dengan bulu lebat seperti singa. Di balik penampilannya yang gagah, dia sangat manja dan suka dimanja." },
-    { id:4,  name:"Nori",    breed:"Scottish Fold",  story:"Telinganya yang unik melipat membuat Nori selalu jadi bintang foto tamu. Dia suka bermain dengan bola benang berwarna-warni." },
-    { id:5,  name:"Donut",   breed:"Ragdoll",        story:"Sesuai namanya, Donut gemuk menggemaskan dan suka dipeluk. Dia akan langsung lemas di pelukan siapapun seperti ragdoll sungguhan." },
-    { id:6,  name:"Taro",    breed:"Russian Blue",   story:"Taro didapat dari adopter yang tidak bisa merawatnya lagi. Bulunya keabu-abuan cantik dan matanya hijau zamrud yang memukau." },
-    { id:7,  name:"Oreo",    breed:"Tuxedo Cat",     story:"Hitam putih seperti biskuit Oreo, kucing ini sangat cerdas dan bisa melakukan beberapa trik sederhana yang selalu membuat tamu kagum." },
-    { id:8,  name:"Matcha",  breed:"Abyssinian",     story:"Matcha adalah kucing paling aktif di cafe. Energinya tak pernah habis dari pagi hingga malam, selalu siap bermain dengan tamu baru." },
-    { id:9,  name:"Sakura",  breed:"Japanese Bobtail", story:"Ekor pendeknya yang unik membuat Sakura mudah dikenali. Dia suka memanjat tempat tertinggi di cafe dan mengawasi semua orang dari atas." },
-    { id:10, name:"Pudding", breed:"Devon Rex",      story:"Bulu keriting Pudding membuatnya terlihat seperti boneka. Dia sangat suka dielus di bawah dagunya dan akan mengeong pelan jika puas." },
-    { id:11, name:"Wanbi",   breed:"Siamese",        story:"Wanbi adalah kucing paling vokal di cafe. Dia tidak segan 'berbicara' pada tamu yang ia sukai dengan suaranya yang khas dan merdu." },
-    { id:12, name:"Choco",   breed:"Burmese",        story:"Coklat susu dengan mata kuning keemasan, Choco suka duduk di pangkuan tamu yang sedang membaca buku atau bekerja dengan laptop." },
-    { id:13, name:"Kopi",    breed:"Domestic Short Hair", story:"Kopi lahir di cafe ini dan tidak pernah mengenal kehidupan luar. Dia adalah host terbaik yang selalu tahu cara membuat tamu merasa nyaman." },
-    { id:14, name:"Miso",    breed:"Norwegian Forest", story:"Bulu tebal Miso sangat membutuhkan perawatan ekstra. Setiap hari perawat cafe memastikan bulunya selalu bersih, wangi, dan mengembang sempurna." },
-    { id:15, name:"Peanut",  breed:"American Curl",  story:"Telinga melengkung ke belakang membuat Peanut selalu terlihat terkejut dan lucu. Dia kucing termuda dan penuh rasa ingin tahu tentang segala hal." },
+    { id:1,  name:"Amora",   breed:"Persian Medium",   img: "https://lh3.googleusercontent.com/d/17hRvvo20Q_p82rTNtuZOXTX-zp_rrbjI", story:"Amora adalah ratu di cafe ini dengan bulu kapasnya yang lembut. Meskipun terlihat anggun dan tenang, Amora sangat suka jika dagunya dielus perlahan. Dia sering ditemukan sedang bersantai di spot paling tinggi untuk mengawasi teman-temannya." },
+    { id:2,  name:"Biscuit", breed:"British Shorthair", img: "https://lh3.googleusercontent.com/d/17hRvvo20Q_p82rTNtuZOXTX-zp_rrbjI", story:"Biscuit datang dari penitipan hewan yang tutup. Dengan sifatnya yang kalem dan suka duduk tenang, dia menjadi teman sempurna untuk bekerja di cafe." },
+    { id:3,  name:"Luna",    breed:"Maine Coon",       img: "https://lh3.googleusercontent.com/d/1Z-XZe-1Ee9iVF6XnvS466n_NMtWXCKEy", story:"Luna adalah kucing terbesar di cafe dengan bulu lebat seperti singa. Di balik penampilannya yang gagah, dia sangat manja dan suka dimanja." },
+    { id:4,  name:"Nori",    breed:"Scottish Fold",    img: "https://lh3.googleusercontent.com/d/1ZFNxXwmlyTDblV3M65zO8dbbyR6rbCmk", story:"Telinganya yang unik melipat membuat Nori selalu jadi bintang foto tamu. Dia suka bermain dengan bola benang berwarna-warni." },
+    { id:5,  name:"Donut",   breed:"Ragdoll",          img: "https://lh3.googleusercontent.com/d/1nQX5i5udjX-VAJvdqq6Flo0qTtbou9tI", story:"Sesuai namanya, Donut gemuk menggemaskan dan suka dipeluk. Dia akan langsung lemas di pelukan siapapun seperti ragdoll sungguhan." },
+    { id:6,  name:"Taro",    breed:"Russian Blue",     img: "https://lh3.googleusercontent.com/d/13Eet0wZasH0mYahfde7_3nuYpZo2socP", story:"Taro didapat dari adopter yang tidak bisa merawatnya lagi. Bulunya keabu-abuan cantik dan matanya hijau zamrud yang memukau." },
+    { id:7,  name:"Oreo",    breed:"Tuxedo Cat",       img: "https://lh3.googleusercontent.com/d/1ZcqSJMJJ_eQxKL6dgFUSduJc_Il33bHZ", story:"Hitam putih seperti biskuit Oreo, kucing ini sangat cerdas dan bisa melakukan beberapa trik sederhana yang selalu membuat tamu kagum." },
+    { id:8,  name:"Matcha",  breed:"Abyssinian",       img: "https://lh3.googleusercontent.com/d/1EWA7oNW-2wB5DgexdzKzt5US_b-AmiAA", story:"Matcha adalah kucing paling aktif di cafe. Energinya tak pernah habis dari pagi hingga malam, selalu siap bermain dengan tamu baru." },
+    { id:9,  name:"Sakura",  breed:"Japanese Bobtail", img: "https://lh3.googleusercontent.com/d/1l1UT0lW3N0d1CzRdVZbfzzSKHnaAW4Xk", story:"Ekor pendeknya yang unik membuat Sakura mudah dikenali. Dia suka memanjat tempat tertinggi di cafe dan mengawasi semua orang dari atas." },
+    { id:10, name:"Pudding", breed:"Devon Rex",        img: "https://lh3.googleusercontent.com/d/1jFe3EXtpz4Yid09cGTG_37iwwbFXgqPk", story:"Bulu keriting Pudding membuatnya terlihat seperti boneka. Dia sangat suka dielus di bawah dagunya dan akan mengeong pelan jika puas." },
+    { id:11, name:"Wanbi",   breed:"Siamese",          img: "https://lh3.googleusercontent.com/d/1Tr9VYrZgbdKOg8WeFrXUX58ilYRh3hbT", story:"Wanbi adalah kucing paling vokal di cafe. Dia tidak segan 'berbicara' pada tamu yang ia sukai dengan suaranya yang khas dan merdu." },
+    { id:12, name:"Choco",   breed:"Burmese",          img: "https://lh3.googleusercontent.com/d/1k1DLO_ixZI4BeimCBslTYJ42JmYwXV4t", story:"Coklat susu dengan mata kuning keemasan, Choco suka duduk di pangkuan tamu yang sedang membaca buku atau bekerja dengan laptop." },
+    { id:13, name:"Kopi",    breed:"Domestic Short Hair", img: "https://lh3.googleusercontent.com/d/1zBYS7KzegT12C8O67hOjLcfrtp9quGlF", story:"Kopi lahir di cafe ini dan tidak pernah mengenal kehidupan luar. Dia adalah host terbaik yang selalu tahu cara membuat tamu merasa nyaman." },
+    { id:14, name:"Miso",    breed:"Norwegian Forest", img: "https://lh3.googleusercontent.com/d/1NnmbZISHHulWN4vs1iJx92mLn3pfKct4", story:"Bulu tebal Miso sangat membutuhkan perawatan ekstra. Setiap hari perawat cafe memastikan bulunya selalu bersih, wangi, dan mengembang sempurna." },
+    { id:15, name:"Peanut",  breed:"American Curl",    img: "https://lh3.googleusercontent.com/d/1ahZjAl7CMo52ioEopuBtu0cgtXR8WUvc", story:"Telinga melengkung ke belakang membuat Peanut selalu terlihat terkejut dan lucu. Dia kucing termuda dan penuh rasa ingin tahu tentang segala hal." },
   ];
-
-  let currentCatId = null;
-  const favorites = new Set();
 
   function renderCats() {
     const grid = document.getElementById('catsGrid');
     grid.innerHTML = cats.map(cat => `
       <div class="cat-card" onclick="openModal(${cat.id})">
         <div class="cat-img">
-          <span class="cat-img-number">${cat.id}</span>
-          <span class="cat-img-icon">🐱</span>
+          <img src="${cat.img}" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none'">
           <div class="cat-img-overlay"><span>Lihat Profil</span></div>
         </div>
         <div class="cat-info">
@@ -1246,46 +1059,49 @@ function renderCats() {
     `).join('');
   }
 
-  function toggleFav(id, btn) {
-    if (favorites.has(id)) { favorites.delete(id); btn.textContent='🤍'; btn.classList.remove('active'); }
-    else { favorites.add(id); btn.textContent='❤️'; btn.classList.add('active'); }
-  }
-
   function openModal(id) {
     const cat = cats.find(c => c.id === id);
     currentCatId = id;
-    document.getElementById('modalImgNum').textContent = id;
+    
+    // Menampilkan gambar di dalam modal
+    const modalImgContainer = document.getElementById('modalImgContainer');
+    if(modalImgContainer) {
+        modalImgContainer.innerHTML = `<img src="${cat.img}" style="width:100%; height:100%; object-fit:cover;">`;
+    }
+    
     document.getElementById('modalName').textContent = cat.name;
     document.getElementById('modalBreed').textContent = cat.breed;
     document.getElementById('modalStory').textContent = cat.story;
+    
     const btn = document.getElementById('modalFavBtn');
     if (favorites.has(id)) { btn.textContent = '❤️ Difavoritkan!'; btn.classList.add('active'); }
     else { btn.textContent = '🤍 Favoritkan Kucing Ini'; btn.classList.remove('active'); }
+    
     document.getElementById('catModal').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
-
-  function closeModal() {
-    document.getElementById('catModal').classList.remove('open');
-    document.body.style.overflow = '';
-    renderCats();
-  }
-
- function toggleFav(id, btn) {
-    if (favorites.has(id)) {
-      favorites.delete(id);
-      if(btn) btn.textContent = '🤍';
-    } else {
-      favorites.add(id);
-      if(btn) btn.textContent = '❤️';
+  
+    function closeModal() {
+      document.getElementById('catModal').classList.remove('open');
+      document.body.style.overflow = '';
+      renderCats();
     }
-    // Update tampilan grid supaya sinkron kalau ada yang berubah
-    renderCats(); 
-  }
-
-  document.getElementById('catModal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-  });
+  
+   function toggleFav(id, btn) {
+      if (favorites.has(id)) {
+        favorites.delete(id);
+        if(btn) btn.textContent = '🤍';
+      } else {
+        favorites.add(id);
+        if(btn) btn.textContent = '❤️';
+      }
+      // Update tampilan grid supaya sinkron kalau ada yang berubah
+      renderCats(); 
+    }
+  
+    document.getElementById('catModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
 
   // ── MENU TABS ──
   function switchTab(btn, id) {
