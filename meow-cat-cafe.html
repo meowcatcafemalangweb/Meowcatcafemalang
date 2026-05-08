@@ -826,28 +826,38 @@
  function renderCats() {
     const grid = document.getElementById('catsGrid');
     if (!grid) return;
-    
+
+    // Pakai nama 'catsData' supaya sinkron dengan daftar kucingmu
     grid.innerHTML = catsData.map((cat, index) => {
-      // Kita pakai index sebagai ID karena data kita gak ada id manual
       const isFav = favorites.has(index);
       return `
-        <div class="cat-card" onclick="openModal(${index})">
-          <div class="cat-img">
+        <div class="cat-card">
+          <div class="cat-img" onclick="openModal(${index})">
             <img src="${cat.img}" style="width: 100%; height: 100%; object-fit: cover;">
             <div class="cat-img-overlay"><span>Lihat Profil</span></div>
-            
-            <button class="cat-fav ${isFav ? 'active' : ''}" 
-                    onclick="event.stopPropagation(); toggleFav(${index}, this)">
-              ${isFav ? '❤️' : '🤍'}
-            </button>
           </div>
-          <div class="cat-info">
+          
+          <button class="cat-fav ${isFav ? 'active' : ''}" 
+                  onclick="event.stopPropagation(); toggleFav(${index})">
+            ${isFav ? '❤️' : '🤍'}
+          </button>
+
+          <div class="cat-info" onclick="openModal(${index})">
             <div class="cat-name">${cat.name}</div>
             <div class="cat-breed">${cat.breed}</div>
           </div>
         </div>
       `;
     }).join('');
+  }
+
+  function toggleFav(id) {
+    if (favorites.has(id)) {
+      favorites.delete(id);
+    } else {
+      favorites.add(id);
+    }
+    renderCats(); // Gambar ulang grid supaya hatinya berubah warna
   }
   function openModal(index) {
     const cat = catsData[index];
@@ -882,7 +892,7 @@ function toggleFavorite(element, event) {
     }
   }
   // Menjalankan fungsi saat halaman terbuka
-  window.addEventListener('DOMContentLoaded', renderCats);
+window.addEventListener('DOMContentLoaded', renderCats);
 </script>
 
 </body>
