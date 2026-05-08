@@ -825,21 +825,29 @@
 
  function renderCats() {
     const grid = document.getElementById('catsGrid');
-    if (grid) {
-      grid.innerHTML = catsData.map((cat, index) => `
-        <div class="cat-card">
-          <div class="cat-img" onclick="openModal(${index})">
+    if (!grid) return;
+    
+    grid.innerHTML = catsData.map((cat, index) => {
+      // Kita pakai index sebagai ID karena data kita gak ada id manual
+      const isFav = favorites.has(index);
+      return `
+        <div class="cat-card" onclick="openModal(${index})">
+          <div class="cat-img">
             <img src="${cat.img}" style="width: 100%; height: 100%; object-fit: cover;">
-            <div class="cat-img-overlay"><span>Detail</span></div>
+            <div class="cat-img-overlay"><span>Lihat Profil</span></div>
+            
+            <button class="cat-fav ${isFav ? 'active' : ''}" 
+                    onclick="event.stopPropagation(); toggleFav(${index}, this)">
+              ${isFav ? '❤️' : '🤍'}
+            </button>
           </div>
-          <div class="fav-btn" onclick="toggleFavorite(this, event)">❤</div>
-          <div class="cat-info" onclick="openModal(${index})">
+          <div class="cat-info">
             <div class="cat-name">${cat.name}</div>
             <div class="cat-breed">${cat.breed}</div>
           </div>
         </div>
-      `).join('');
-    }
+      `;
+    }).join('');
   }
   function openModal(index) {
     const cat = catsData[index];
@@ -893,9 +901,9 @@ function toggleFavorite(element, event) {
       <button class="menu-tab" onclick="switchTab(this,'snacks')">🍪 Snacks</button>
     </div>
     <div class="menu-panel active" id="tab-coffee">
-      <div class="menu-item"><span class="menu-item-emoji">☕</span><div class="menu-item-name">Americano</div><div class="menu-item-desc">Espresso bold dengan air panas, rasa kopi yang bersih dan kuat.</div><div class="menu-item-price">Rp 22.000</div></div>
-      <div class="menu-item"><span class="menu-item-emoji">🥛</span><div class="menu-item-name">Caffe Latte</div><div class="menu-item-desc">Espresso smooth dipadukan susu segar steamed, creamy dan lembut.</div><div class="menu-item-price">Rp 28.000</div></div>
-      <div class="menu-item"><span class="menu-item-emoji">🍫</span><div class="menu-item-name">Mocha Latte</div><div class="menu-item-desc">Perpaduan espresso, coklat, dan susu yang memanjakan lidah.</div><div class="menu-item-price">Rp 30.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">☕</span><div class="menu-item-name">Americano</div><div class="menu-item-desc">Espresso bold dengan air panas, rasa kopi yang bersih dan kuat.</div><div class="menu-item-price">Rp 15.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🥛</span><div class="menu-item-name">Americano Hot</div><div class="menu-item-desc">Espresso smooth dipadukan susu segar steamed, creamy dan lembut.</div><div class="menu-item-price">Rp 14.000</div></div>
+      <div class="menu-item"><span class="menu-item-emoji">🍫</span><div class="menu-item-name">Vietnam Drip</div><div class="menu-item-desc">Perpaduan espresso, coklat, dan susu yang memanjakan lidah.</div><div class="menu-item-price">Rp 30.000</div></div>
       <div class="menu-item"><span class="menu-item-emoji">🌿</span><div class="menu-item-name">Matcha Latte</div><div class="menu-item-desc">Matcha premium Jepang dengan sentuhan susu segar yang creamy.</div><div class="menu-item-price">Rp 32.000</div></div>
       <div class="menu-item"><span class="menu-item-emoji">🧊</span><div class="menu-item-name">Cold Brew</div><div class="menu-item-desc">Kopi seduh dingin 12 jam, smooth tanpa rasa asam yang berlebihan.</div><div class="menu-item-price">Rp 28.000</div></div>
       <div class="menu-item"><span class="menu-item-emoji">🍮</span><div class="menu-item-name">Caramel Macchiato</div><div class="menu-item-desc">Vanilla latte dengan siraman karamel manis di atasnya.</div><div class="menu-item-price">Rp 32.000</div></div>
@@ -1250,17 +1258,16 @@ function toggleFavorite(element, event) {
     renderCats();
   }
 
-  function toggleFavModal() {
-    const btn = document.getElementById('modalFavBtn');
-    if (favorites.has(currentCatId)) {
-      favorites.delete(currentCatId);
-      btn.textContent = '🤍 Favoritkan Kucing Ini';
-      btn.classList.remove('active');
+ function toggleFav(id, btn) {
+    if (favorites.has(id)) {
+      favorites.delete(id);
+      if(btn) btn.textContent = '🤍';
     } else {
-      favorites.add(currentCatId);
-      btn.textContent = '❤️ Difavoritkan!';
-      btn.classList.add('active');
+      favorites.add(id);
+      if(btn) btn.textContent = '❤️';
     }
+    // Update tampilan grid supaya sinkron kalau ada yang berubah
+    renderCats(); 
   }
 
   document.getElementById('catModal').addEventListener('click', function(e) {
