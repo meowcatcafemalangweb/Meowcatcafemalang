@@ -709,11 +709,63 @@
 
     </div>
     <div class="rules-note">
-      <strong>🩺 Catatan Kesehatan:</strong> Semua kucing kami divaksinasi secara rutin, diperiksa kesehatan secara berkala, dan dirawat oleh dokter hewan berpengalaman. Jika kamu memiliki alergi terhadap bulu kucing, harap konsultasikan terlebih dahulu dengan staff kami. Terima kasih sudah membantu menjaga kenyamanan dan kesehatan keluarga berbulu kami! 🐾
+      <strong>🩺 Catatan Kesehatan:</strong> Semua kucing kami divaksinasi secara rutin, diperiksa kesehatan secara berkala, dan dirawat oleh dokter hewan berpengalaman. Jika kamu memiliki alergi terhadap bulu kucing, harap konsultasikan terlebih dahulu dengan staff kami.
     </div>
   </div>
 </section>
 
+<script>
+  const catsData = [
+    {
+      name: "Amora",
+      breed: "Persian Medium",
+      story: "Amora adalah ratu di cafe ini dengan bulu kapasnya yang lembut. Meskipun terlihat anggun dan tenang, Amora sangat suka jika dagunya dielus perlahan.",
+      img: "https://lh3.googleusercontent.com/d/1t8oGsXS7jSbfmVJBRZjB7jMxhZmIkgEG", 
+      emoji: "🐈"
+    }
+  ];
+
+  function renderCats() {
+    const grid = document.getElementById('catsGrid');
+    if (grid) {
+      grid.innerHTML = catsData.map((cat, index) => `
+        <div class="cat-card" onclick="openModal(${index})">
+          <div class="cat-img">
+            <img src="${cat.img}" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="cat-img-overlay"><span>Detail</span></div>
+          </div>
+          <div class="cat-info">
+            <div class="cat-name">${cat.name}</div>
+            <div class="cat-breed">${cat.breed}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+
+  function openModal(index) {
+    const cat = catsData[index];
+    document.getElementById('modalName').innerText = cat.name;
+    document.getElementById('modalBreed').innerText = cat.breed;
+    document.getElementById('modalStory').innerText = cat.story;
+    document.getElementById('modalImgContainer').innerHTML = `<img src="${cat.img}" style="width:100%; height:100%; object-fit:cover;">`;
+    document.getElementById('catModal').classList.add('open');
+  }
+
+  function closeModal() {
+    document.getElementById('catModal').classList.remove('open');
+  }
+
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // Menjalankan fungsi saat halaman terbuka
+  window.addEventListener('DOMContentLoaded', renderCats);
+</script>
+
+</body>
+</html>
 <!-- MENU -->
 <section id="menu">
   <div class="section-inner">
