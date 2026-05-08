@@ -823,16 +823,17 @@
     }
   ];
 
-  function renderCats() {
+ function renderCats() {
     const grid = document.getElementById('catsGrid');
     if (grid) {
       grid.innerHTML = catsData.map((cat, index) => `
-        <div class="cat-card" onclick="openModal(${index})">
-          <div class="cat-img">
+        <div class="cat-card">
+          <div class="cat-img" onclick="openModal(${index})">
             <img src="${cat.img}" style="width: 100%; height: 100%; object-fit: cover;">
             <div class="cat-img-overlay"><span>Detail</span></div>
           </div>
-          <div class="cat-info">
+          <div class="fav-btn" onclick="toggleFavorite(this, event)">❤</div>
+          <div class="cat-info" onclick="openModal(${index})">
             <div class="cat-name">${cat.name}</div>
             <div class="cat-breed">${cat.breed}</div>
           </div>
@@ -840,7 +841,6 @@
       `).join('');
     }
   }
-
   function openModal(index) {
     const cat = catsData[index];
     document.getElementById('modalName').innerText = cat.name;
@@ -857,7 +857,22 @@
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
   }
-
+function toggleFavorite(element, event) {
+    // 1. Mencegah modal terbuka saat kita klik ikon hati
+    event.stopPropagation(); 
+    
+    // 2. Tambah/hapus class 'active' untuk ganti warna
+    element.classList.toggle('active');
+    
+    // 3. Tambahkan sedikit logika animasi biar keren
+    if (element.classList.contains('active')) {
+      element.style.color = '#ff4757'; // Jadi Merah
+      element.style.transform = 'scale(1.3)';
+    } else {
+      element.style.color = 'white'; // Balik ke Putih
+      element.style.transform = 'scale(1)';
+    }
+  }
   // Menjalankan fungsi saat halaman terbuka
   window.addEventListener('DOMContentLoaded', renderCats);
 </script>
